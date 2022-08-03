@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import react from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, Image, SafeAreaView } from "react-native";
 
 export default function App() {
+  console.log("App executed");
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <SafeAreaView style={styles.container}>
+      <Text>Hello React Native</Text>
+      <Image
+        source={{
+          width: 100,
+          height: 100,
+          uri: "https://picsum.photos/100/100",
+        }}
+      />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
   },
 });

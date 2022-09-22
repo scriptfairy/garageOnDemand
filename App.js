@@ -1,17 +1,8 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import AppButton from "./app/components/AppButton";
-import ViewImageScreen from "./app/screens/ViewImageScreen";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
-
+import SearchScreen from "./app/screens/SearchScreen";
+import MessagesScreen from "./app/screens/MessagesScreen";
+import GarageFormScreen from "./app/screens/GarageFormScreen";
+import BookingScreen from "./app/screens/BookingScreen";
 export default function App() {
-  return <WelcomeScreen />;
+  return <BookingScreen />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

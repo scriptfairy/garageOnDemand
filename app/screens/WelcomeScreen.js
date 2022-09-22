@@ -5,12 +5,13 @@ import AppButton from "../components/AppButton";
 function WelcomeScreen(props) {
   return (
     <ImageBackground
+      blurRadius={4}
       style={styles.background}
-      source={require("../assets/background.jpg")}
+      source={require("../assets/garage_03.jpg")}
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-        <Text>Find or Rent a Carpark</Text>
+        <Text style={styles.tagline}>Carpark at Your Request</Text>
       </View>
       <View style={styles.buttonsContainer}>
         <AppButton title="Login" />
@@ -39,5 +40,6 @@ const styles = StyleSheet.create({
     top: 70,
     alignItems: "center",
   },
+  tagline: { fontSize: 25, fontWeight: "600", paddingVertical: 20 },
 });
 export default WelcomeScreen;

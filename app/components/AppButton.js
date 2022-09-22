@@ -1,9 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-// import { primary } from "../config/colors";
-// import { white } from "../config/colors";
-
 import * as colors from "../config/colors";
 
 function AppButton(props) {
@@ -24,6 +21,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     padding: 15,
+    marginVertical: 10,
   },
   text: {
     color: colors.white,

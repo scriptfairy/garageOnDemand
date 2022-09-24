@@ -1,19 +1,18 @@
 import React from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  Platform,
-  StatusBar,
-  View,
-} from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 
-function Screen({ children }) {
-  return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;
+function Screen({ children, style }) {
+  const { padding, ...otherStyles } = style || {};
+  return (
+    <SafeAreaView style={[styles.screen, otherStyles]}>
+      <View style={{ padding }}>{children}</View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
   screen: {
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    flex: 1,
   },
 });
 export default Screen;

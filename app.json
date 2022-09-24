@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "GarageOnDemand",
-    "slug": "GarageOnDemand",
+    "name": "youPark",
+    "slug": "youPark",
+    "owner": "al-fairy",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./app/assets/icon.png",
@@ -17,15 +18,15 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alfairy.GarageOnDemand"
+      "bundleIdentifier": "com.alfairy.youPark"
     },
-    "description": "List/Hire a garage",
+    "description": "List or Hire a Private Garage",
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.alfairy.GarageOnDemand"
+      "package": "com.alfairy.youPark"
     },
     "web": {
       "favicon": "./app/assets/favicon.png"

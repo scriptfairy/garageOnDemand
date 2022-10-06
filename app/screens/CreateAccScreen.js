@@ -1,18 +1,27 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, Image } from "react-native";
+import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
 import AppTextInput from "../components/AppTextInput";
 import AppText from "../components/AppText";
-import Screen from "../components/Screen";
-import BottomTabs from "../components/BottomTabs";
 import * as colors from "../config/colors";
 
-function LoginScreen(props) {
+function CreateAccScreen(props) {
+  const [username, setUsername] = React.useState();
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
+  const [passwordRepeat, setPasswordRepeat] = React.useState();
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/FullLogo.png")} />
+      <AppTextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        icon="account"
+        onChangeText={(text) => setUsername(text)}
+        placeholder="Username"
+        keyboardType="default"
+      />
       <AppTextInput
         autoCapitalize="none"
         autoCorrect={false}
@@ -31,27 +40,39 @@ function LoginScreen(props) {
         secureTextEntry={true}
         extContentType="password"
       />
+      <AppTextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        icon="lock"
+        onChangeText={(text) => setPasswordRepeat(text)}
+        placeholder="Re-enter Password"
+        secureTextEntry={true}
+        extContentType="password"
+      />
       <AppButton
-        title="Login"
+        title="Create Account"
         onPress={() => console.log("Login", email, password)}
       />
-      <AppText style={styles.title}>Forgot Password?</AppText>
-      <BottomTabs />
+
+      <AppText style={styles.title}>Already has account?</AppText>
+      <AppText style={styles.login}>Login</AppText>
     </Screen>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     padding: 10,
   },
   title: {
     alignSelf: "center",
-    color: colors.link,
+    color: colors.medium,
     padding: 20,
+  },
+  login: {
+    alignSelf: "center",
+    color: colors.link,
     fontWeight: "bold",
   },
-
   logo: {
     width: 200,
     height: 60,
@@ -60,4 +81,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-export default LoginScreen;
+
+export default CreateAccScreen;

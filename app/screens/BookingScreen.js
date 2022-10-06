@@ -9,26 +9,17 @@ import {
   ScrollView,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import Screen from "../components/Screen";
+import DateAndTime from "../components/DateAndTime";
 import * as colors from "../config/colors";
+import AppButton from "../components/AppButton";
 
 const fieldValues = {
   address: "10 Don Street, Newtown NSW",
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  hourlyRate: 20,
+  hourlyRate: 10,
 };
-
-function formatTime(date) {
-  const hoursOrig = date.getHours();
-  const hours = hoursOrig === 0 ? 24 : hoursOrig;
-  const minutes = date.getMinutes();
-  const meridian = hoursOrig >= 12 ? "PM" : "AM";
-  const hoursFormatted = hours > 12 ? String(hours - 12) : String(hours);
-  const minutesFormatted = minutes < 10 ? `0${minutes}` : `${minutes}`;
-  return `${hoursFormatted}:${minutesFormatted} ${meridian}`;
-}
 
 function calculateFee(hourlyRate, fromDate, toDate) {
   const t1 = fromDate.getTime();
@@ -37,71 +28,14 @@ function calculateFee(hourlyRate, fromDate, toDate) {
   return hourlyRate * hours;
 }
 
-function DateAndTime(props) {
-  const [date, setDate] = React.useState(new Date());
-  const [mode, setMode] = React.useState(null);
-
-  const onChange = (event, selectedDate) => {
-    setMode(null);
-    setDate(selectedDate);
-    props.onChange(selectedDate);
-  };
-
-  const showDatepicker = () => {
-    setMode("date");
-  };
-
-  const showTimepicker = () => {
-    setMode("time");
-  };
-
-  return (
-    <View>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          width: "100%",
-          marginBottom: SPACING_4,
-        }}
-      >
-        <View style={{ marginRight: SPACING_4, flexGrow: 1 }}>
-          <Text style={styles.input}>{date.toDateString()}</Text>
-        </View>
-        <View style={{ flexGrow: 0 }}>
-          <Button onPress={showDatepicker} title="Choose date" />
-        </View>
-      </View>
-
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View style={{ marginRight: SPACING_4, flexGrow: 1 }}>
-          <Text style={styles.input}>{formatTime(date)}</Text>
-        </View>
-        <View>
-          <Button onPress={showTimepicker} title="Choose Time" />
-        </View>
-      </View>
-
-      {mode && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={false}
-          onChange={onChange}
-        />
-      )}
-    </View>
-  );
-}
-
-function BookingScreen(props) {
+function BookingScreen({ navigation }) {
   const [fromDateTime, setFromDateTime] = React.useState(null);
   const [toDateTime, setToDateTime] = React.useState(null);
+  const [hourlyRate, setHourlyRate] = React.useState(fieldValues.hourlyRate);
 
   const fee =
     fromDateTime && toDateTime
-      ? calculateFee(fieldValues.hourlyRate, fromDateTime, toDateTime)
+      ? calculateFee(hourlyRate, fromDateTime, toDateTime)
       : 0;
 
   return (
@@ -110,8 +44,15 @@ function BookingScreen(props) {
         <Text style={styles.heading}>Book Garage</Text>
         <Text style={styles.label}>Address</Text>
         <Text style={styles.field}>{fieldValues.address}</Text>
-        <Text style={styles.label}>Hourly Rate</Text>
-        <Text style={styles.field}>{fieldValues.hourlyRate}</Text>
+        <Text style={styles.label}>Hourly Rate{hourlyRate}</Text>
+        <TextInput
+          style={styles.field}
+          value={hourlyRate}
+          onChangeText={(value) => {
+            setHourlyRate(value);
+          }}
+          keyboardType="numeric"
+        />
         <View>
           <View style={styles.datesContainer}>
             <Text style={styles.label}>From</Text>
@@ -135,7 +76,11 @@ function BookingScreen(props) {
         </View>
 
         <View>
-          <Button title="Place Booking" onPress={() => {}} />
+          <AppButton
+            title="Place Booking"
+            onPress={() => navigation.navigate("Payment")}
+            style={{ backgroundColor: colors.primary }}
+          />
         </View>
       </ScrollView>
     </Screen>
@@ -174,13 +119,13 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    marginBottom: SPACING_3,
+    marginBottom: SPACING_2,
   },
   field: {
     backgroundColor: "#eee",
     padding: 10,
     fontSize: 18,
-    marginBottom: SPACING_5,
+    marginBottom: SPACING_4,
   },
   input: {
     borderWidth: 1,

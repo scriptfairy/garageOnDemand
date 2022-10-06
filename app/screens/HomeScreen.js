@@ -1,22 +1,33 @@
 import React from "react";
 import { View } from "react-native";
 import AppButton from "../components/AppButton";
+import Screen from "../components/Screen";
 
 function HomeScreen({ navigation }) {
   return (
-    <View>
+    <Screen>
       <AppButton
+        options={{ headerStyle: { backgroundColor: "#f4511e" } }}
         title="Welcome"
+        name="Welcome"
         onPress={() => {
           navigation.navigate("Welcome");
         }}
       />
+
       <AppButton
-        title="Search"
+        title="Landing Page"
         onPress={() => {
-          navigation.navigate("Search");
+          navigation.navigate("Landing Page");
         }}
       />
+      <AppButton
+        title="Login"
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+      />
+
       <AppButton
         title="Garage Form"
         onPress={() => {
@@ -29,20 +40,7 @@ function HomeScreen({ navigation }) {
           navigation.navigate("Booking");
         }}
       />
-
-      <AppButton
-        title="My Account"
-        onPress={() => {
-          navigation.navigate("My Account");
-        }}
-      />
-      <AppButton
-        title="Login"
-        onPress={() => {
-          navigation.navigate("Login");
-        }}
-      />
-    </View>
+    </Screen>
   );
 }
 

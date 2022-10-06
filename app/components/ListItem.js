@@ -39,12 +39,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     padding: 15,
+
     backgroundColor: white,
   },
   image: {
     width: 70,
     height: 70,
-    borderRadius: 35,
+    borderRadius: 15,
   },
   detailsContainer: {
     marginLeft: 10,

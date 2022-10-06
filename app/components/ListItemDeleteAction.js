@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: danger,
     width: 70,
+    marginTop: 20,
+    padding: 10,
     justifyContent: "center",
     alignItems: "center",
   },

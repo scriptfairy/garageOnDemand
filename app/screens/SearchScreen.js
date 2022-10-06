@@ -1,14 +1,22 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Image, Keyboard } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Image,
+  Keyboard,
+  ImageBackground,
+  Text,
+} from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Screen from "../components/Screen";
 
 // https://iconsplace.com/red-icons/garage-icon-14/
 
 const garagePositions = [
-  { top: 100, left: 50 },
-  { top: 200, left: 150 },
-  { top: 300, left: 200 },
+  { top: 100, left: 50, text: "$10" },
+  { top: 200, left: 150, text: "$20" },
+  { top: 300, left: 200, text: "$15" },
 ];
 
 function SearchScreen(props) {
@@ -48,7 +56,7 @@ function SearchScreen(props) {
           />
           {garagePositions.map((garagePosition, index) => {
             return (
-              <Image
+              <ImageBackground
                 key={index}
                 style={{
                   ...styles.mapIcon,
@@ -56,7 +64,11 @@ function SearchScreen(props) {
                   left: garagePosition.left,
                 }}
                 source={require("../assets/garage-icon-14-256.png")}
-              />
+              >
+                <Text style={{ fontWeight: "bold", top: -15 }}>
+                  {garagePosition.text}
+                </Text>
+              </ImageBackground>
             );
           })}
         </View>

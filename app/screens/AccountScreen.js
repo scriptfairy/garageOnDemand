@@ -8,16 +8,16 @@ import * as colors from "../config/colors";
 
 const menuItems = [
   {
-    title: "My Listings",
+    title: "Portfolio",
     icon: {
       name: "format-list-bulleted",
       backgroundColor: colors.primary,
     },
   },
   {
-    title: "My Bookings",
+    title: "My History",
     icon: {
-      name: "car-clock",
+      name: "history",
       backgroundColor: colors.primary,
     },
   },
@@ -58,8 +58,21 @@ function AccountScreen(props) {
         />
       </View>
       <ListItem
+        title="FAQ"
+        IconComponent={
+          <Icon
+            name="frequently-asked-questions"
+            backgroundColor={colors.link}
+          />
+        }
+      />
+      <ListItem
+        title="Contact Us"
+        IconComponent={<Icon name="chat" backgroundColor={colors.link} />}
+      />
+      <ListItem
         title="Logout"
-        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+        IconComponent={<Icon name="logout" backgroundColor={colors.link} />}
       />
     </Screen>
   );
